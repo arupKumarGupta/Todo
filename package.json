@@ -2,13 +2,16 @@
   "name": "todoapi",
   "version": "1.0.0",
   "description": "Todo",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arup",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^2.2.33"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^2.2.33",
+    "mongoose": "^5.0.17"
   }
 }
