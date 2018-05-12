@@ -87,3 +87,18 @@ describe('GET /todos/:id', () => {
         }).end(done);
     });
 });
+
+describe('DELETE /todos/:id', () => {
+    it('should return 404 if id is invalid', (done) => {
+        request(app).delete('/todos/24').expect(404).end(done);
+    });
+    it('should return the deleted doc with 200', (done) => {
+        request(app).delete(`/todos/${todos[0]._id.toHexString()}`).expect(200).expect((res) => {
+            expect(res.body.todo.text).toBe(todos[0].text);
+        }).end(done);
+    });
+    it('should return 404 for if todo not found', (done) => {
+        let x = new ObjectID();
+        request(app).delete(`/todos/${x}`).expect(404).end(done);
+    });
+});
