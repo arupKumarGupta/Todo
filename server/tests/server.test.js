@@ -95,7 +95,14 @@ describe('DELETE /todos/:id', () => {
     it('should return the deleted doc with 200', (done) => {
         request(app).delete(`/todos/${todos[0]._id.toHexString()}`).expect(200).expect((res) => {
             expect(res.body.todo.text).toBe(todos[0].text);
-        }).end(done);
+        }).end((err, res) => {
+            if (err)
+                return done(err);
+            Todo.findById(todos[0]._id).then((result) => {
+                expect(result).toBeFalsy();
+                done();
+            }).catch((e) => done(e));
+        });
     });
     it('should return 404 for if todo not found', (done) => {
         let x = new ObjectID();
