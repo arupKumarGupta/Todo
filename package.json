@@ -9,13 +9,14 @@
     "start": "node server/server.js"
   },
   "engines": {
-    "node":"8.11.1"   
+    "node": "8.11.1"
   },
   "author": "Arup",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "lodash": "^4.17.10",
     "mongodb": "^2.2.33",
     "mongoose": "^5.0.17"
   },
