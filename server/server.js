@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 var port = process.env.PORT;
-
+/* ------------------------------------------------------------------------------------------- */
 app.post('/todos', (req, res) => {
     var todo = new Todo({
         text: req.body.text
@@ -97,6 +97,18 @@ app.patch('/todos/:id', (req, res) => {
     });
 
 });
+
+/* ---------------------------------------------------------------------------------------------- */
+/* USERS */
+app.post('/users', (req, res) => {
+    let body = _.pick(req.body, ['email', 'password']);
+    console.log(body);
+    let user = new User(body);
+    user.save().then((result) => {
+        res.status(200).send(result);
+    }).catch((e) => res.status(400).send(e));
+});
+
 app.listen(port, () => {
     console.log(`Started server on port ${port}`);
 });
