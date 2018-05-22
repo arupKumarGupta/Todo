@@ -84,7 +84,7 @@ UserSchema.statics.findByEmail = function (email, password) {
                     return resolve(user);
                 reject();
             });
-        })
+        });
     }).catch((e) => {
         return Promise.reject();
     });
