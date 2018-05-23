@@ -239,3 +239,19 @@ describe('POST /users/login', () => {
             });
     });
 });
+
+describe('DELETE /users/me/logout', () => {
+    it('should log out and authenticated user', (done) => {
+        request(app).delete('/users/me/logout').set('x-auth', users[0].tokens[0].token)
+            .expect(200).end((err, res) => {
+                if (err) return done(err);
+                User.findById(users[0]._id).then((user) => {
+                    expect(user.tokens.length).toBe(0);
+                    done();
+                }).catch((e) => done(e));
+            });
+    });
+    it('should not allow to log out any unauthorized user', (done) => {
+        request(app).delete('/users/me/logout').set('x-auth', 'test').expect(401).end(done);
+    });
+});
