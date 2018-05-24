@@ -11,7 +11,7 @@ let token = jwt.sign(data, '124ab');
 console.log(token);
 let decoded = jwt.verify(token, '124abd');
 console.log(decoded); */
-let password = 'abc123!';
+let password = '!';
 bcrypt.genSalt(10, (error, salt) => {
     bcrypt.hash(password, salt, (error, hash) => {
         console.log(hash);
